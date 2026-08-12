@@ -4,7 +4,7 @@ Este projeto foi desenvolvido utilizando Vanilla JS, com HTML, CSS e JavaScript 
 
 ## Descrição
 
-É um jogo da memória simples, no qual o jogador precisa encontrar os pares de cartas iguais. O objetivo é virar duas cartas por vez, memorizar sua posição e combinar todos os pares antes que o tempo termine ou até completar o tabuleiro.
+É um jogo da memória simples, no qual o jogador precisa encontrar os pares de cartas iguais. O objetivo é virar duas cartas por vez, memorizar sua posição e combinar todos os pares até completar o tabuleiro.
 
 ## Tecnologias utilizadas
 
@@ -22,8 +22,8 @@ Este projeto foi desenvolvido utilizando Vanilla JS, com HTML, CSS e JavaScript 
 
 ## Como executar
 
-1. Abra o arquivo `index.html` em um navegador.
-2. O jogo será carregado automaticamente.
+1. Abra o link do projeto no seu navegador: [Jogo da Memória](https://jogo-da-memoria-weld-pi.vercel.app/)
+
 
 ## Objetivo
 
@@ -31,6 +31,7 @@ Completar todos os pares de cartas e testar sua memória.
 
 
 ## Autor
-- [Gabriel Camargo](https://github.com/gabrielcamargogsilva)
-- [LinkedIn](https://www.linkedin.com/in/gabriel-camargo-dev)
-
+- **Gabriel Camargo Gonçalves Silva**  
+  • [GitHub](https://github.com/gabrielcamargogsilva)  
+  • [LinkedIn](www.linkedin.com/in/gabriel-camargo-dev)
+  • [Email](mailto:gabrielcamargogsilva@gmail.com)
