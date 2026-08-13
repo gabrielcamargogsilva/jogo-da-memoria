@@ -19,6 +19,9 @@ Este projeto foi desenvolvido utilizando Vanilla JS, com HTML, CSS e JavaScript 
 - Contador de movimentos
 - Feedback visual ao acertar ou errar
 - Jogo simples e responsivo
+- Reinício do jogo
+- Armazenamento do recorde de movimentos no localStorage
+- Reset do recorde de movimentos
 
 ## Como executar
 
