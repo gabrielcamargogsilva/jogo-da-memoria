@@ -13,10 +13,25 @@
 
     <div class="stats">
       <p>Tentativas: <span id="attempts">0</span></p>
+      <p><span id="record">Recorde: 0</span></p>
       <button id="restart-btn">Reiniciar Jogo</button>
+      <button id="restart-record">Resetar Recorde</button>
     </div>
 
     <div class="grid" id="grid"></div>
+  </div>
+
+  <!-- Modal de vitória -->
+  <div id="win-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modal-title">Parabéns!</h2>
+      <p id="modal-record"></p>
+      <p id="modal-message"></p>
+      <div class="modal-actions">
+        <button id="modal-new">Novo Jogo</button>
+        <button id="modal-close">Fechar</button>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>

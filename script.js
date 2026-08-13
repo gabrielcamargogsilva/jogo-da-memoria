@@ -11,6 +11,16 @@ let matchedPairs = 0;
 const gridElement = document.getElementById('grid');
 const attemptsElement = document.getElementById('attempts');
 const restartBtn = document.getElementById('restart-btn');
+// Elementos do modal
+const modal = document.getElementById('win-modal');
+const modalMessage = document.getElementById('modal-message');
+const modalRecord = document.getElementById('modal-record');
+const modalNewBtn = document.getElementById('modal-new');
+const modalCloseBtn = document.getElementById('modal-close');
+// Elemento do recorde no topo
+const topRecordElement = document.getElementById('record');
+// Botão de Resetar record
+const restartRecord = document.getElementById('restart-record')
 
 // Função para embaralhar um array (Fisher-Yates)
 function shuffle(array) {
@@ -30,6 +40,11 @@ function createBoard() {
   firstCard = null;
   secondCard = null;
   lockBoard = false;
+  // Esconder modal se estiver aberto
+  if (modal) modal.classList.add('hidden');
+
+  // Atualiza recorde exibido no topo
+  updateTopRecord();
 
   const shuffledCards = shuffle([...cardsArray]);
 
@@ -79,7 +94,7 @@ function checkForMatch() {
 function disableCards() {
   firstCard.classList.add('matched');
   secondCard.classList.add('matched');
-  
+
   firstCard.removeEventListener('click', flipCard);
   secondCard.removeEventListener('click', flipCard);
 
@@ -89,10 +104,49 @@ function disableCards() {
   // Verifica se o jogo acabou
   if (matchedPairs === emojis.length) {
     setTimeout(() => {
-      alert(`Parabéns! Você venceu em ${attempts} tentativas!`);
+      showWinModal();
     }, 300);
   }
 }
+
+// Mostrar modal de vitória e gerenciar recorde
+function showWinModal() {
+  if (!modal) return;
+  const bestKey = 'memory_best';
+  const saved = localStorage.getItem(bestKey);
+  const best = saved ? parseInt(saved, 10) : null;
+  let newRecord = false;
+
+  if (best === null || attempts < best) {
+    localStorage.setItem(bestKey, attempts);
+    newRecord = true;
+  }
+
+  modalMessage.textContent = `Você venceu em ${attempts} tentativas!`;
+  modalRecord.textContent = newRecord ? `Novo recorde: ${attempts} tentativas 🎉` : `Recorde: ${best} tentativas`;
+  modal.classList.remove('hidden');
+
+  // Atualiza também o recorde exibido no topo da página
+  updateTopRecord();
+}
+
+// Atualiza o elemento de recorde no topo com o valor do localStorage
+function updateTopRecord() {
+  if (!topRecordElement) return;
+  const bestKey = 'memory_best';
+  const saved = localStorage.getItem(bestKey);
+  topRecordElement.textContent = saved ? `Recorde: ${saved}` : 'Recorde: -';
+}
+
+function closeModal() {
+  if (!modal) return;
+  modal.classList.add('hidden');
+}
+
+// Ações dos botões do modal
+if (modalNewBtn) modalNewBtn.addEventListener('click', () => { closeModal(); createBoard(); });
+if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
 // Desvira as cartas se forem diferentes
 function unflipCards() {
@@ -114,6 +168,16 @@ function resetTurn() {
   secondCard = null;
   lockBoard = false;
 }
+
+function clearRecord() {
+  localStorage.removeItem('memory_best');
+  updateTopRecord();
+}
+
+
+restartRecord.addEventListener('click', () => {
+  clearRecord();
+});
 
 // Evento do botão de reiniciar
 restartBtn.addEventListener('click', createBoard);
