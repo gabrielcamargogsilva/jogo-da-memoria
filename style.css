@@ -56,17 +56,19 @@ button:hover {
 }
 
 .card {
-  height: 90px;
   background-color: #1e293b;
   border: 2px solid #334155;
   border-radius: 8px;
-  font-size: 2.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   user-select: none;
   transition: transform 0.3s, background-color 0.3s;
+  aspect-ratio: 1 / 1; /* garante quadrados responsivos */
+  width: 100%;
+  min-height: 64px;
+  font-size: clamp(1.2rem, 4vw, 2.2rem);
 }
 
 .card:hover {
@@ -121,4 +123,33 @@ button:hover {
 .modal-actions button {
   padding: 8px 14px;
   border-radius: 8px;
+}
+
+/* Layout responsivo */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stats p { margin: 0; }
+
+@media (max-width: 900px) {
+  .game-container { max-width: 420px; }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .game-container { padding: 16px; }
+}
+
+@media (max-width: 420px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  h1 { font-size: 1.2rem; }
+  .modal-content { width: 92%; padding: 14px; }
+  button { padding: 6px 10px; }
 }
